@@ -1,3 +1,4 @@
+import string
 def get_most_watch_movie_id(file_name,delimeter):
     file=open(file_name)
     movies_count={}
@@ -41,7 +42,7 @@ def get_most_active_user_id(file_name,delimeter):
             most_active_user_id=key
     return most_active_user_id
     
-def most_active_user(user_id,user_data):
+def get_most_active_user(user_id,user_data):
     for key, value in user_data.items():
         if key==user_id:
             return value
@@ -62,9 +63,46 @@ def get_user_data(file_name,delimeter):
         token=line.split(delimeter)
         user_db[token[0]]=token
     return user_db
-        
+    
+    
+    
+    
+def get_highest_rated_movie_id():
+    movie_rating_count={}
+    user_rating_count={}
+    file=open("ratings1.data")
+    for line in file:
+        token=line.split('\t')
+        movie_id=token[1]
+        rating=token[2]
+        if movie_id in movie_rating_count:
+            movie_rating_count[movie_id]=int(movie_rating_count[movie_id])+int(token[2])
+            user_rating_count[movie_id]=user_rating_count[movie_id]+1
+        else:
+            movie_rating_count[movie_id]=rating
+            user_rating_count[movie_id]=1
+        rate=0
+        min_value=0
+        highest_rated_movie_id=0
+        for key,value in movie_rating_count.items():
+            for key1,value1 in user_rating_count.items():
+                if key==key1:
+                    rate=int(value)/int(value1)
+                    if rate>min_value:
+                        min_value=rate
+                        highest_rated_movie_id=key
+    return highest_rated_movie_id
+    
+def get_highest_rated_movie(movie_id,movie_data):
+    for key,value in movie_data.items():
+        if key==movie_id:
+            return value
+    
             
-
-
-
-
+            
+            
+        
+       
+        
+    
+   

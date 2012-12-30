@@ -11,6 +11,10 @@ def main():
     most_active_user=manager.get_most_active_user(most_active_user_id,user_data)
     print "most active user is"
     print most_active_user
+    highest_rated_movie_id=manager.get_highest_rated_movie_id()
+    highest_rated_movie=manager.get_highest_rated_movie(highest_rated_movie_id,movie_data)
+    print "highest rated movie"
+    print highest_rated_movie
    # print movie_data
 			
 
